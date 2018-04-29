@@ -20,5 +20,11 @@ git push origin master
 ```
 现在本地创建一个目录并进入这个目录
 git init
-
+# 新建一些代码
+git add .
+git commit -m "修改备注"
+# 关联远程仓位
+git remote add orgin https://github.com/yataOrg/test_init.git
+第一次提交要加 -u 以后提交就不需要加 -u 了
+git push -u origin master
 ```
