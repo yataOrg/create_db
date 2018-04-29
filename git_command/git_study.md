@@ -28,3 +28,5 @@ git remote add orgin https://github.com/yataOrg/test_init.git
 第一次提交要加 -u 以后提交就不需要加 -u 了
 git push -u origin master
 ```
+
+##修改test
