@@ -26,7 +26,7 @@ class SpiderByIp(object):
         time.sleep(1)
         button = browser.find_elements_by_tag_name("button")[0]
         button.click()
-        time.sleep(4)
+        time.sleep(3)
 
         need_text1 = browser.find_element_by_id('myself')
         need_text2 = browser.find_element_by_id('timezone')
@@ -38,16 +38,25 @@ class SpiderByIp(object):
         # print(need_text3.text)
         insert_data = [ip]
 
-        n1, n2 = need_text1.text.split(' ')
+        out_text1 = need_text1.text.split(' ', 1)
+        if (1 == len(out_text1)):
+            n1 = out_text1[0]
+            n2 = ''
+        else:
+            n1, n2 = need_text1.text.split(' ', 1)
         # print(need_text2.text)
         n3, n4 = need_text3.text.split(' ', 1)
 
-        jwd = need_text2.text.split(' ')
-        # print(jwd)
-        n5 = jwd[-3].split("：")[-1]
-        # print("$$$")
-        # print(n5)
-        n6 = jwd[-1]
+        if '' == need_text2.text:
+            n5 = 0
+            n6 = 0
+        else: 
+            jwd = need_text2.text.split(' ')
+            # print(jwd)
+            n5 = jwd[-3].split("：")[-1]
+            # print("$$$")
+            # print(n5)
+            n6 = jwd[-1]
 
         now_time = int(time.time())
         insert_data.append(n1) # address1
@@ -67,7 +76,7 @@ class SpiderByIp(object):
 
 
     def actionConnect(self):
-        db = pymysql.connect(host = "localhost", user = "root", password = "", db = "yata_data_01", port = 3306, charset="utf8")
+        db = pymysql.connect(host = "localhost", user = "root", password = "123456", db = "yata_data_01", port = 3306, charset="utf8")
         cursor = db.cursor()
         return (cursor, db)
 
@@ -78,13 +87,13 @@ class SpiderByIp(object):
         VALUES ('%s', '%s', '%s', '%s', '%s', '%s', '%s', %d, %d)"""
         #try:
         insert_data = tuple(insert_data)
-        print('ssss')
+        # print('ssss')
         # print(insert_data)
         end_sql  = sql % insert_data
-        print(end_sql)
+        # print(end_sql)
         cursor.execute(end_sql)
         db.commit()
-        print("insert " + str(n) + " times")
+        print("insert id = " + str(n) + " times")
         #except Exception as e:
             # print(e)
             # db.rollback()
@@ -94,16 +103,15 @@ class SpiderByIp(object):
 
 
     def actionMain(self, cursor, browser, db):
-        select_sql = "select distinct IP_Address from ip_address"
+        select_sql = "select distinct IP_Address,id  from ip_address where id >= 928 and length(IP_Address) <= 16 and IP_Address != '0' order by  id asc"
         cursor.execute(select_sql)
         rows = cursor.fetchall()
         if rows is not None:
-            n = 0
+            
             for v in rows:
-                n += 1
                 use_data = self.actionSpider(v[0], browser)
-                print(use_data)
-                self.actionInsertData(use_data, n, db)
+                #print(use_data)
+                self.actionInsertData(use_data, v[1], db)
 
             db.close()  
 

@@ -20,7 +20,7 @@ SET FOREIGN_KEY_CHECKS=0;
 -- ----------------------------
 DROP TABLE IF EXISTS `ip_address`;
 CREATE TABLE `ip_address` (
-  `IP_Address` varchar(16)
+	`IP_Address` varchar(255)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- ----------------------------
@@ -34,7 +34,6 @@ INSERT INTO `ip_address` VALUES ('108.26.114.154');
 INSERT INTO `ip_address` VALUES ('47.147.79.114');
 INSERT INTO `ip_address` VALUES ('91.237.34.50');
 INSERT INTO `ip_address` VALUES ('103.10.82.130');
-INSERT INTO `ip_address` VALUES ('2601:646:8b01:ac25:e896:6545:1f12:731e');
 INSERT INTO `ip_address` VALUES ('118.200.5.71');
 INSERT INTO `ip_address` VALUES ('121.144.65.120');
 INSERT INTO `ip_address` VALUES ('73.176.251.138');
