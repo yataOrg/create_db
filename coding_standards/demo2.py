@@ -93,7 +93,7 @@ class SpiderByIp(object):
         # print(end_sql)
         cursor.execute(end_sql)
         db.commit()
-        print("insert id = " + str(n) + " times")
+        print("insert id = " + str(n) + " ip =" + insert_data[0] + " times")
         #except Exception as e:
             # print(e)
             # db.rollback()
@@ -103,7 +103,7 @@ class SpiderByIp(object):
 
 
     def actionMain(self, cursor, browser, db):
-        select_sql = "select distinct IP_Address,id  from ip_address where id >= 928 and length(IP_Address) <= 16 and IP_Address != '0' order by  id asc"
+        select_sql = "select distinct IP_Address,id  from ip_address where id >= 1748 and length(IP_Address) <= 16 and IP_Address != '0' order by  id asc"
         cursor.execute(select_sql)
         rows = cursor.fetchall()
         if rows is not None:
@@ -113,8 +113,9 @@ class SpiderByIp(object):
                 #print(use_data)
                 self.actionInsertData(use_data, v[1], db)
 
-            db.close()  
+            db.close()
 
+        print("this task had over")
 
 
     
