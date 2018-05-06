@@ -22,4 +22,6 @@ http://socialsentiment.net/
 ###
 class 类的用法
 
+###
+使用pdb进行Python调试
 
