@@ -2,18 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="42baae6e-29a9-4934-8c03-5afee71d3cc8" name="Default" comment="">
-      <change beforePath="" afterPath="$PROJECT_DIR$/Python_Programming/nlp_tf-idf_analysis/new_hubs.py" />
       <change beforePath="$PROJECT_DIR$/README.md" afterPath="$PROJECT_DIR$/README.md" />
-      <change beforePath="$PROJECT_DIR$/coding_standards/NLP_tf-idf_analysis/new_hubs.py" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/coding_standards/demo_mysql/.gitignore" afterPath="$PROJECT_DIR$/Python_Programming/coding_standard_mysql/.gitignore" />
-      <change beforePath="$PROJECT_DIR$/coding_standards/demo_mysql/mysql_code/.gitignore" afterPath="$PROJECT_DIR$/Python_Programming/coding_standard_mysql/mysql_code/.gitignore" />
-      <change beforePath="$PROJECT_DIR$/coding_standards/demo_mysql/mysql_code/BaseMysql.py" afterPath="$PROJECT_DIR$/Python_Programming/coding_standard_mysql/mysql_code/BaseMysql.py" />
-      <change beforePath="$PROJECT_DIR$/coding_standards/demo_mysql/mysql_code/__init__.py" afterPath="$PROJECT_DIR$/Python_Programming/coding_standard_mysql/mysql_code/__init__.py" />
-      <change beforePath="$PROJECT_DIR$/coding_standards/demo_mysql/test.py" afterPath="$PROJECT_DIR$/Python_Programming/coding_standard_mysql/test.py" />
-      <change beforePath="$PROJECT_DIR$/coding_standards/spider/spider_ipinfo.py" afterPath="$PROJECT_DIR$/Python_Programming/spider_ip_information/spider_ipinfo.py" />
-      <change beforePath="$PROJECT_DIR$/coding_standards/spider/spider_ipip.py" afterPath="$PROJECT_DIR$/Python_Programming/spider_ip_information/spider_ipip-net.py" />
-      <change beforePath="$PROJECT_DIR$/coding_standards/sql_file/ip_address.sql" afterPath="$PROJECT_DIR$/Python_Programming/sql_file/ip_address.sql" />
-      <change beforePath="$PROJECT_DIR$/coding_standards/sql_file/proxy_ip.sql" afterPath="$PROJECT_DIR$/Python_Programming/spider_ip_agent_pool/proxy_ip.sql" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -28,18 +17,31 @@
         <entry file="file://$PROJECT_DIR$/Python_Programming/nlp_tf-idf_analysis/new_hubs.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="294">
-              <caret line="17" column="23" lean-forward="true" selection-start-line="17" selection-start-column="23" selection-end-line="17" selection-end-column="23" />
+              <caret line="17" column="23" lean-forward="false" selection-start-line="17" selection-start-column="23" selection-end-line="17" selection-end-column="23" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="proxy_ip.sql" pinned="false" current-in-tab="true">
+      <file leaf-file-name="proxy_ip.sql" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Python_Programming/spider_ip_agent_pool/proxy_ip.sql">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="357">
-              <caret line="17" column="40" lean-forward="true" selection-start-line="17" selection-start-column="40" selection-end-line="17" selection-end-column="40" />
+              <caret line="17" column="40" lean-forward="false" selection-start-line="17" selection-start-column="40" selection-end-line="17" selection-end-column="40" />
               <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="README.md" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/README.md">
+          <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+            <state split_layout="SPLIT">
+              <first_editor relative-caret-position="504">
+                <caret line="24" column="0" lean-forward="false" selection-start-line="24" selection-start-column="0" selection-end-line="24" selection-end-column="0" />
+                <folding />
+              </first_editor>
+              <second_editor />
             </state>
           </provider>
         </entry>
@@ -48,17 +50,17 @@
         <entry file="file://$PROJECT_DIR$/Python_Programming/sql_file/ip_address.sql">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="504">
-              <caret line="24" column="0" lean-forward="true" selection-start-line="24" selection-start-column="0" selection-end-line="24" selection-end-column="0" />
+              <caret line="24" column="0" lean-forward="false" selection-start-line="24" selection-start-column="0" selection-end-line="24" selection-end-column="0" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="spider_ipinfo.py" pinned="false" current-in-tab="false">
+      <file leaf-file-name="spider_ipinfo.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Python_Programming/spider_ip_information/spider_ipinfo.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-735">
-              <caret line="28" column="58" lean-forward="true" selection-start-line="28" selection-start-column="58" selection-end-line="28" selection-end-column="58" />
+            <state relative-caret-position="-1509">
+              <caret line="30" column="40" lean-forward="false" selection-start-line="30" selection-start-column="40" selection-end-line="30" selection-end-column="40" />
               <folding />
             </state>
           </provider>
@@ -69,16 +71,6 @@
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="987">
               <caret line="119" column="0" lean-forward="false" selection-start-line="119" selection-start-column="0" selection-end-line="119" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="__init__.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Python_Programming/coding_standard_mysql/mysql_code/__init__.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -98,7 +90,7 @@
         <entry file="file://$PROJECT_DIR$/git_command/mysql_code/__init__.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="42">
-              <caret line="2" column="23" lean-forward="true" selection-start-line="2" selection-start-column="23" selection-end-line="2" selection-end-column="23" />
+              <caret line="2" column="23" lean-forward="false" selection-start-line="2" selection-start-column="23" selection-end-line="2" selection-end-column="23" />
               <folding />
             </state>
           </provider>
@@ -133,6 +125,7 @@
     <option name="CHANGED_PATHS">
       <list>
         <option value="$PROJECT_DIR$/coding_standards/NLP_tf-idf_Analysis/new_hubs.py" />
+        <option value="$PROJECT_DIR$/README.md" />
       </list>
     </option>
   </component>
@@ -185,6 +178,12 @@
               <item name="create_db" type="b2602c69:ProjectViewProjectNode" />
               <item name="create_db" type="462c0819:PsiDirectoryNode" />
               <item name="Python_Programming" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="create_db" type="b2602c69:ProjectViewProjectNode" />
+              <item name="create_db" type="462c0819:PsiDirectoryNode" />
+              <item name="Python_Programming" type="462c0819:PsiDirectoryNode" />
+              <item name="spider_ip_information" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -313,7 +312,7 @@
     <entry file="file://$PROJECT_DIR$/git_command/mysql_code/__init__.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="42">
-          <caret line="2" column="23" lean-forward="true" selection-start-line="2" selection-start-column="23" selection-end-line="2" selection-end-column="23" />
+          <caret line="2" column="23" lean-forward="false" selection-start-line="2" selection-start-column="23" selection-end-line="2" selection-end-column="23" />
           <folding />
         </state>
       </provider>
@@ -321,7 +320,7 @@
     <entry file="file://$PROJECT_DIR$/Python_Programming/nlp_tf-idf_analysis/new_hubs.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="294">
-          <caret line="17" column="23" lean-forward="true" selection-start-line="17" selection-start-column="23" selection-end-line="17" selection-end-column="23" />
+          <caret line="17" column="23" lean-forward="false" selection-start-line="17" selection-start-column="23" selection-end-line="17" selection-end-column="23" />
           <folding />
         </state>
       </provider>
@@ -329,7 +328,7 @@
     <entry file="file://$PROJECT_DIR$/Python_Programming/sql_file/ip_address.sql">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="504">
-          <caret line="24" column="0" lean-forward="true" selection-start-line="24" selection-start-column="0" selection-end-line="24" selection-end-column="0" />
+          <caret line="24" column="0" lean-forward="false" selection-start-line="24" selection-start-column="0" selection-end-line="24" selection-end-column="0" />
           <folding />
         </state>
       </provider>
@@ -342,18 +341,29 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Python_Programming/spider_ip_information/spider_ipinfo.py">
+    <entry file="file://$PROJECT_DIR$/Python_Programming/spider_ip_agent_pool/proxy_ip.sql">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-735">
-          <caret line="28" column="58" lean-forward="true" selection-start-line="28" selection-start-column="58" selection-end-line="28" selection-end-column="58" />
+        <state relative-caret-position="357">
+          <caret line="17" column="40" lean-forward="false" selection-start-line="17" selection-start-column="40" selection-end-line="17" selection-end-column="40" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Python_Programming/spider_ip_agent_pool/proxy_ip.sql">
+    <entry file="file://$PROJECT_DIR$/README.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="SPLIT">
+          <first_editor relative-caret-position="504">
+            <caret line="24" column="0" lean-forward="false" selection-start-line="24" selection-start-column="0" selection-end-line="24" selection-end-column="0" />
+            <folding />
+          </first_editor>
+          <second_editor />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Python_Programming/spider_ip_information/spider_ipinfo.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="357">
-          <caret line="17" column="40" lean-forward="true" selection-start-line="17" selection-start-column="40" selection-end-line="17" selection-end-column="40" />
+        <state relative-caret-position="-1509">
+          <caret line="30" column="40" lean-forward="false" selection-start-line="30" selection-start-column="40" selection-end-line="30" selection-end-column="40" />
           <folding />
         </state>
       </provider>
