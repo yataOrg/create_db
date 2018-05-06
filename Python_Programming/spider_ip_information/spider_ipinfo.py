@@ -4,8 +4,11 @@
 import requests, re, time
 from scrapy import Selector
 import pymysql
+from requests.packages.urllib3.exceptions import InsecureRequestWarning
+# 禁用安全请求警告
+requests.packages.urllib3.disable_warnings(InsecureRequestWarning)
 
-db = pymysql.connect(host = "localhost", user = "root", password = "123456", db = "yata_data_01", port = 3306, charset="utf8")
+db = pymysql.connect(host = "localhost", user = "root", password = "", db = "yata_data_01", port = 3306, charset="utf8")
 cursor = db.cursor()
 
 class GetProxy(object):
@@ -64,7 +67,7 @@ class GetProxy(object):
             port = line[1]
             ip_type = line[2]
             judge_re = self.decide_ip(ip, port, type)
-            print("proxy is {0}:{1}".format(line[0], line[1]) + str(judge_re))
+            # print("proxy is {0}:{1}".format(line[0], line[1]) + str(judge_re))
 
         if judge_re:
             self.update_available_ip(ip, 1)
@@ -91,7 +94,11 @@ class GetProxy(object):
 
                 ip = tr.css("td::text")[0].extract()
                 port = tr.css("td::text")[1].extract()
-                server_address = tr.css("td:nth-child(4) > a::text").extract()[0]
+                # print(tr.css("td:nth-child(4) > a::text").extract())
+                if [] == tr.css("td:nth-child(4) > a::text").extract():
+                    server_address = ''
+                else:
+                    server_address = tr.css("td:nth-child(4) > a::text").extract()[0]
                 anonymous = tr.css("td::text")[4].extract()
                 ip_type = tr.css("td::text")[5].extract()
                 speed = tr.css("td:nth-child(7) > div::attr(title)").extract()[0]
@@ -121,15 +128,111 @@ class GetProxy(object):
 
 
             print("insert ip list over " + str(i) + " pages")
-        print("insert ip list end @@@@")        
+        print("insert ip list end @@@@")
+
+    def to_escape(self, str):
+        str1 = re.sub('\"', '\\"', str)
+        str2 = re.sub("\'", "\\'", str1)
+        return str2
+
+    # save to database
+    # ?token=81e547314a984e
+    def actionSave_info(self, proxy_dict, ip, id):
+        try:
+            data = requests.get("https://ipinfo.io/%s" % (ip, ), verify=False, proxies=proxy_dict, timeout=5).json()
+            # print(data.text)
+            # data = data.json()
+        except Exception as e:
+            print(e)
+            print('#############'*3)
+            return 2
+        else:
+            pass
+        # 进行数据合法化判断
+        if 'error' in data.keys():
+            return False
+
+        if 'bogon' in data.keys() and True == data['bogon']:
+            self.actionSave_bogon(ip)
+            return True
+
+        print("select ip is ---- " + str(ip) + ": " + str(id))
+        for k,v in data.items():
+            data[k] = self.to_escape(v)
+
+        # to_data = map(self.to_escape, data)
+        print(data)
+        jd, wd = data['loc'].split(",")
+        if '' == data['org']:
+            asn = ''
+            r_org = ''
+        else:
+            asn, r_org = data['org'].split(" ", 1)
+        now_time = time.strftime('%Y-%m-%d %H:%M:%S',time.localtime(time.time()))
+        if 'postal' in data.keys():
+            pass
+        else:
+            data['postal'] = ''
+
+        # print((data['ip'], data['city'], data['region'], data['country'], jd, wd,data['postal'], data['org'], now_time, now_time))
+        insert_sql = '''insert into ipinfo_new (ip, city, region, country, lon, lat, postal, asn, org, created_at, updated_at) values ('%s', 
+'%s', '%s', '%s', %f, %f, '%s', '%s', '%s', '%s', '%s') ''' % (data['ip'], data['city'], data['region'], data['country'], float(jd), float(wd),data['postal'], asn, r_org, now_time, now_time)
+
+        # print(insert_sql % (data['ip'], data['city'], data['region'], data['country'], float(jd), float(wd),data['postal'], asn, r_org, now_time, now_time))
+
+        cursor.execute(insert_sql)
+        db.commit()
+        print("insert successfully! times----" + str(id))
+        return True
+
+
+    def actionSave_bogon(self, ip):
+        now_time = time.strftime('%Y-%m-%d %H:%M:%S', time.localtime(time.time()))
+        insert_sql = "insert into ipinfo_new (ip, city, region, country, lon, lat, postal, asn, org, created_at, updated_at) values ('%s', '', '', '', 0, 0, '', '', '虚拟IP，局域网', '%s', '%s')" % (ip, now_time, now_time)
+        cursor.execute(insert_sql)
+        db.commit()
+        print("insert successfully! ip > [%s]this is bogon bogon bogon" % ip)
+        return True
+
+
+
+    # 循环查询ipinfo
+    def actionGet_ip_list(self):
+        select_sql = "select distinct IP_Address,id  from ip_address where id >= 1344 and length(IP_Address) <= 16 and IP_Address != '0' order by  id asc"
+        cursor.execute(select_sql)
+        rows = cursor.fetchall()
+        if rows is not None:
+            for v in rows:
+
+                re = self.actionTo_do(v[0], v[1])
+                while (2 == re):
+                    re = self.actionTo_do(v[0], v[1])
+                    print("this re is @@@@@@@@@@@@@@@@ " + str(re))
+                print("jump while----")
+
+                # proxy_dict = self.get_random_proxy()
+                # self.actionSave_info(proxy_dict, v[0], v[1])
+
+        print('this script had end!')
+        return True
+
+    def actionTo_do(self, ip, id):
+        proxy_dict = self.get_random_proxy()
+        re = self.actionSave_info(proxy_dict, ip, id)
+        return re
+
 
 if __name__ == '__main__':
+    print("start script")
     app = GetProxy()
     # app.crawl_ips()
+    app.actionGet_ip_list()
 
-    proxy_dict = app.get_random_proxy()
-    print('start!!!!!!!!!'*10)
-    print(proxy_dict)
 
-    response = requests.get("https://ipinfo.io/8.8.8.8/", headers = app.headers, verify = True, proxies = proxy_dict, timeout = 4)
+
+
+
+
+
+    # response = requests.get("https://ipinfo.io/103.10.82.130?token=81e547314a984e", verify = True, proxies = proxy_dict, timeout = 4)
     # print(response.text)
