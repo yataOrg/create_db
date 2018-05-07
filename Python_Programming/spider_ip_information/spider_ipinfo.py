@@ -25,6 +25,7 @@ class GetProxy(object):
         delete_sql = "delete from proxy_ip where ip = '{0}'".format(ip)
         cursor.execute(delete_sql)
         db.commit()
+        print("delete this ip ---- %s" % (ip,))
         return True
 
     def decide_ip(self, ip, port, type):
@@ -66,12 +67,14 @@ class GetProxy(object):
             ip = line[0]
             port = line[1]
             ip_type = line[2]
-            judge_re = self.decide_ip(ip, port, type)
-            # print("proxy is {0}:{1}".format(line[0], line[1]) + str(judge_re))
 
+            # 去掉下面的判断
+            # judge_re = self.decide_ip(ip, port, type)
+            # print("proxy is {0}:{1}".format(line[0], line[1]) + str(judge_re))
+            judge_re = True
         if judge_re:
-            self.update_available_ip(ip, 1)
-            print('@@@@@@' *5)
+            # self.update_available_ip(ip, 1)
+            # print('@@@@@@' *5)
             
             print("use this {0}:{1}---".format(line[0], line[1]))
             return {
@@ -85,7 +88,7 @@ class GetProxy(object):
     def crawl_ips(self):
         headers = {"user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/66.0.3359.139 Safari/537.36"}
 
-        for i in range(1, 3):
+        for i in range(1, 5):
             response = requests.get("http://www.xicidaili.com/nn/{0}".format(i), headers=headers)
             selector = Selector(text=response.text)
             all_trs = selector.css("#ip_list tr")
@@ -139,12 +142,17 @@ class GetProxy(object):
     # ?token=81e547314a984e
     def actionSave_info(self, proxy_dict, ip, id):
         try:
-            data = requests.get("https://ipinfo.io/%s" % (ip, ), verify=False, proxies=proxy_dict, timeout=5).json()
+            data = requests.get("https://ipinfo.io/%s" % (ip, ), verify=True, proxies=proxy_dict, timeout=5).json()
             # print(data.text)
             # data = data.json()
         except Exception as e:
             print(e)
             print('#############'*3)
+            if 'HTTP' in proxy_dict.keys():
+                delete_ip = proxy_dict['HTTP'].split("//", 1)[1].split(":", 1)[0]
+            else:
+                delete_ip = proxy_dict['HTTPS'].split("//", 1)[1].split(":", 1)[0]
+            self.delete_ip(delete_ip)
             return 2
         else:
             pass
@@ -162,7 +170,10 @@ class GetProxy(object):
 
         # to_data = map(self.to_escape, data)
         print(data)
-        jd, wd = data['loc'].split(",")
+        if 'loc' in data.keys():
+            jd, wd = data['loc'].split(",")
+        else:
+            jd, wd = [0, 0]
         if '' == data['org']:
             asn = ''
             r_org = ''
@@ -176,7 +187,7 @@ class GetProxy(object):
 
         # print((data['ip'], data['city'], data['region'], data['country'], jd, wd,data['postal'], data['org'], now_time, now_time))
         insert_sql = '''insert into ipinfo_new (ip, city, region, country, lon, lat, postal, asn, org, created_at, updated_at) values ('%s', 
-'%s', '%s', '%s', %f, %f, '%s', '%s', '%s', '%s', '%s') ''' % (data['ip'], data['city'], data['region'], data['country'], float(jd), float(wd),data['postal'], asn, r_org, now_time, now_time)
+'%s', '%s', '%s', %f, %f, '%s', '%s', '%s', '%s', '%s') ''' % (data['ip'], data.get('city', ''), data.get('region', ''), data.get('country', ''), float(jd), float(wd),data.get('postal', ''), asn, r_org, now_time, now_time)
 
         # print(insert_sql % (data['ip'], data['city'], data['region'], data['country'], float(jd), float(wd),data['postal'], asn, r_org, now_time, now_time))
 
@@ -198,7 +209,7 @@ class GetProxy(object):
 
     # 循环查询ipinfo
     def actionGet_ip_list(self):
-        select_sql = "select distinct IP_Address,id  from ip_address where id >= 1344 and length(IP_Address) <= 16 and IP_Address != '0' order by  id asc"
+        select_sql = "select distinct IP_Address,id  from ip_address where id >= 74 and length(IP_Address) <= 16 and IP_Address != '0' order by  id asc"
         cursor.execute(select_sql)
         rows = cursor.fetchall()
         if rows is not None:
