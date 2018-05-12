@@ -11,9 +11,11 @@
 *   使用pdb进行Python调试 https://mp.weixin.qq.com/s/eWrAwCr533WAChe5_4VJmw
 *   Debug 功能展开
 *   爬虫项目的完整性 使用代理池方法  from...import... 模块化
-*   eleme 经纬度 上海遍历
+*   eleme 经纬度 上海遍历
 *   scrapy..
 *   flask
+*   centos cloud server.  xshell. 
+*   
 
 
 
