@@ -14,8 +14,10 @@
 *   eleme 经纬度 上海遍历
 *   scrapy..
 *   flask
-*   centos cloud server.  xshell. 
-*   
+*   centos cloud server.  xshell.
+---
+*   mysql的sql优化知识
+*   mysql的存储过程
 
 
 
