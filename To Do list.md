@@ -22,3 +22,4 @@
 *   虚拟机配置
 *   multiple sql 实现方法？
 *   面向对象 flask 
+*   css,js 基本概念
